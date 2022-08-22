@@ -11,17 +11,18 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import contactsReducer from './contacts/constactsSlice';
+import authorizationReducer from './authorization/authorizationSlice';
 
 const persistConfig = {
-  key: 'contacts',
+  key: 'token',
   version: 1,
   storage,
-  whitelist: ['items'],
+  whitelist: ['token'],
 };
 
 const persistedAuthorizationReducer = persistReducer(
   persistConfig,
-  contactsReducer
+  authorizationReducer
 );
 
 export const store = configureStore({
