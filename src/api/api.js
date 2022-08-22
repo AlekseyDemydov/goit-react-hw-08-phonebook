@@ -12,13 +12,13 @@ const token = {
 };
 
 export const registerUserApi = async data => {
-  token.unset();
+  token.set(token);
   const response = await axios.post('/users/signup', data);
   return response.data;
 };
 
 export const loginUserApi = async data => {
-  token.unset();
+  token.set(token);
   const response = await axios.post('users/login', data);
   return response.data;
 };
