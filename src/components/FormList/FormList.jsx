@@ -1,40 +1,40 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
-import { getFilterContact } from 'redux/contacts/contactsSelector';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-  deleteContact,
   getContact,
+  deleteContact,
 } from '../../redux/contacts/contactsOperation';
+import { getUserToken } from '../../redux/authorization/authorizationSelector';
+import { getFilterContact } from '../../redux/contacts/contactsSelector';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import s from './FormList.module.css';
 
 const FormList = () => {
-  const items = useSelector(getFilterContact);
-  // const filter = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(getFilterContact);
+  const token = useSelector(getUserToken);
   const dispatch = useDispatch();
 
-  // const filteredContacts = items.filter(el =>
-  //   el.name.toLowerCase().includes(filter.toLowerCase())
-  // );
-
   useEffect(() => {
-    dispatch(getContact());
-  }, [dispatch]);
+    if (!token) return;
+    dispatch(getContact(token));
+  }, [token, dispatch]);
 
   return (
-    <ul className={s.contact}>
-      {items.map(el => (
-        <li key={el.id} className={s.con}>
+    <ul className={s.list}>
+      {contacts.map(({ id, name, number }) => (
+        <li key={id} className={s.con}>
           <p className={s.conName}>
-            {el.name}: <span>{el.phone}</span>
+            <span>{name}</span>: {number}
           </p>
-          <button
-            className={s.btn}
-            type="button"
-            onClick={() => dispatch(deleteContact(el.id))}
+          <Button
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+            className={s.button}
+            onClick={() => dispatch(deleteContact(id))}
           >
-            del
-          </button>
+            Del
+          </Button>
         </li>
       ))}
     </ul>
