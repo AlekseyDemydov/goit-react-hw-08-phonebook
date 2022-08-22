@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserToken } from '../redux/authorization/authorizationSelector';
 import { getCurrentUser } from '../redux/authorization/authorizationOperation';
 
-const Login = lazy(() => import('../pages/Login'));
-const Register = lazy(() => import('../pages/Register'));
-const Contact = lazy(() => import('../pages/Contact'));
+const Login = lazy(() => import('../pages/LoginPage'));
+const Register = lazy(() => import('../pages/RegisterPage'));
+const Contact = lazy(() => import('../pages/ContactPage'));
 
 const App = () => {
   const token = useSelector(getUserToken);
@@ -33,7 +33,7 @@ const App = () => {
             path="register"
             element={<Public component={Register} restricted />}
           />
-          <Route path="contacts" element={<Private component={Contact} />} />
+          <Route path="/contacts" element={<Private component={Contact} />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

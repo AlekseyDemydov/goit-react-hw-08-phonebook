@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  getContact,
+  getContacts,
   deleteContact,
 } from '../../redux/contacts/contactsOperation';
 import { getUserToken } from '../../redux/authorization/authorizationSelector';
@@ -17,7 +17,7 @@ const FormList = () => {
 
   useEffect(() => {
     if (!token) return;
-    dispatch(getContact(token));
+    dispatch(getContacts(token));
   }, [token, dispatch]);
 
   return (

@@ -5,11 +5,11 @@ import {
   deleteContactApi,
 } from '../../api/api';
 
-export const getContact = createAsyncThunk(
+export const getContacts = createAsyncThunk(
   'getContacts',
-  async (_, thunkApi) => {
+  async (token, thunkApi) => {
     try {
-      const items = await getContactsApi();
+      const items = await getContactsApi(token);
       return items;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -17,7 +17,7 @@ export const getContact = createAsyncThunk(
   }
 );
 
-export const addContact = createAsyncThunk(
+export const addContacts = createAsyncThunk(
   'addContacts',
   async (item, { rejectWithValue }) => {
     try {
