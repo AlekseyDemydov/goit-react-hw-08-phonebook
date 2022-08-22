@@ -1,0 +1,12 @@
+.label {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.input {
+  display: block;
+  width: 250px;
+  padding: 5px;
+  margin-top: 5px;
+}

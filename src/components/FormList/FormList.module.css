@@ -1,0 +1,19 @@
+.contact {
+  padding: 0;
+}
+
+.btn {
+  margin-left: 10px;
+  padding: 2px 6px;
+}
+
+.conName {
+  margin: 0;
+}
+
+.con {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  text-align: left;
+}

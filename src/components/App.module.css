@@ -1,0 +1,19 @@
+.contacts {
+  background-color: rgb(119, 232, 116);
+  padding: 60px;
+  width: 180px;
+}
+
+.boxPhone {
+  margin-right: 40px;
+  background-color: aqua;
+  padding: 60px;
+
+}
+
+.box {
+  display: flex;
+  margin: 25px auto;
+  justify-content: center;
+
+}
