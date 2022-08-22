@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 const token = {
   set(token) {
@@ -11,34 +11,41 @@ const token = {
   },
 };
 
-export const registerUserApi = data => {
+export const registerUserApi = async data => {
   token.unset();
-  return axios.post('/users/signup', data).then(response => response.data);
+  const response = await axios.post('/users/signup', data);
+  return response.data;
 };
 
-export const loginUserApi = data => {
+export const loginUserApi = async data => {
   token.unset();
-  return axios.post('/users/login', data).then(response => response.data);
+  const response = await axios.post('users/login', data);
+  return response.data;
 };
 
-export const logoutUserApi = () => {
-  return axios.post('/users/logout').then(response => response.data);
+export const logoutUserApi = async () => {
+  const response = await axios.post('/users/logout');
+  return response.data;
 };
 
-export const getCurrentUserApi = userToken => {
+export const getCurrentUserApi = async userToken => {
   token.set(userToken);
-  return axios.get('/users/current').then(response => response.data);
+  const response = await axios.get('/users/current');
+  return response.data;
 };
 
-export const getContactsApi = userToken => {
+export const getContactsApi = async userToken => {
   token.set(userToken);
-  return axios('/contacts').then(response => response.data);
+  const response = await axios('/contacts');
+  return response.data;
 };
 
-export const addContactsApi = item => {
-  return axios.post('/contacts', item).then(response => response.data);
+export const addContactsApi = async item => {
+  const response = await axios.post('/contacts', item);
+  return response.data;
 };
 
-export const deleteContactApi = id => {
-  return axios.delete(`/contacts/${id}`).then(() => id);
+export const deleteContactApi = async id => {
+  await axios.delete(`/contacts/${id}`);
+  return id;
 };

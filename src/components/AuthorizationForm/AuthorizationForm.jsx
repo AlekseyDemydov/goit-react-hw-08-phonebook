@@ -110,7 +110,7 @@ const AuthorizationForm = ({ title }) => {
         <Typography component="h2" variant="h5">
           {title}
         </Typography>
-        <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={onFormSubmit}>
           {title === 'Register' && (
             <TextField
               margin="normal"

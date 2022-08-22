@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { getContact } from 'redux/contacts/contactsSelector';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperation';
+import { getContact } from '../../redux/contacts/contactsSelector';
+import { toast } from 'react-toastify';
 import s from './Form.module.css';
 
 const Form = () => {
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [number, setNumber] = useState('');
   const items = useSelector(getContact);
   const dispatch = useDispatch();
 
@@ -19,7 +17,7 @@ const Form = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
+      case 'number':
         setNumber(value);
         break;
       default:
@@ -44,11 +42,10 @@ const Form = () => {
       });
       return;
     }
-    const newContact = { name, phone };
+    const newContact = { name, number };
     dispatch(addContact(newContact));
     reset();
   };
-
   return (
     <form onSubmit={handleSubmitRen} className={s.form}>
       <label className={s.label}>
@@ -69,7 +66,7 @@ const Form = () => {
         <input
           className={s.input}
           type="tel"
-          value={phone}
+          value={number}
           onChange={handleChange}
           name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
